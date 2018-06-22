@@ -1,0 +1,29 @@
+{
+  "private": true,
+  "name": "pa11y-config",
+  "version": "1.0.0",
+  "description": "Commandline tools to initialise configuration file(s) for 'pa11y-ci' (from 'package.json', etc.) - automated accessibility testing.",
+  "X-NOTE": "This is NOT an official part of pa11y or pa11y-ci!",
+  "keywords": [ "accessibility", "pa11y-ci", "cli" ],
+  "author": "Nick Freear",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nfreear/pa11y-config.git"
+  },
+  "license": "(MIT OR LGPL-3.0)",
+  "engines": {
+    "node": ">=8"
+  },
+  "peerDependencies": {
+    "pa11y-ci": "^2.1.1"
+  },
+  "devDependencies": {
+    "semistandard": "^12.0.1"
+  },
+  "bin": {
+    "pa11y-pkg": "./bin/cli.js --pkg"
+  },
+  "scripts": {
+    "test": "semistandard"
+  }
+}
