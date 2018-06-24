@@ -20,7 +20,7 @@
 
 const FS = require('fs');
 const PKG_KEY = 'pa11yCiConfig';
-const CONFIG_FILE = process.cwd() + '/.pa11yci';
+const CONFIG_FILE = process.cwd() + '/.pa11yci.json';
 
 const PKG_PATH = process.cwd() + '/package.json';
 const ARG = process.argv[ process.argv.length - 1 ];
@@ -31,13 +31,16 @@ console.warn('\nCommand:', ARG);
 if (ARG === '--pkg') {
   const PKG = require(PKG_PATH);
   const OPT = PKG[ PKG_KEY ];
+  const CFG = {};
 
   console.warn('package.json:', PKG_PATH);
   console.warn('Extracted configuration:', OPT);
 
-  OPT[ '#' ] = 'Automated accessibility testing ~ https://github.com/pa11y/ci';
+  CFG[ '#' ] = 'Automated accessibility testing ~ https://github.com/pa11y/ci';
+  CFG.defaults = OPT && OPT.defaults ? OPT.defaults : {};
+  CFG.urls = OPT && OPT.urls ? OPT.urls : [];
 
-  const json = JSON.stringify(OPT, null, 2);
+  const json = JSON.stringify(CFG, null, 2);
 
   FS.writeFile(CONFIG_FILE, json, function (err) {
     if (err) throw err;
